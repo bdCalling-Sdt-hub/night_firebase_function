@@ -124,7 +124,13 @@ const landing_page = onRequest((request, response) => {
           console.log(data);
 
           //   add new Guest
-          await admin.firestore().collection("Guests").doc().set(data);
+          const refDoc = admin.firestore().collection("Guests").doc();
+          await refDoc.set({
+            id: refDoc.id,
+            ...data,
+            created_at: admin.firestore.FieldValue.serverTimestamp(),
+            updated_at: admin.firestore.FieldValue.serverTimestamp(),
+          });
           return response.status(200).json({
             message: "Guest added successfully.",
             success: true,

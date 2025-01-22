@@ -45,6 +45,28 @@ const send_email_verification = onRequest((request, response) => {
 
       // console.log(claims);
 
+      // create asyc firetore to user
+      await admin
+        .firestore()
+        .collection("Users")
+        .doc(user.uid)
+        .set({
+          uid: user.uid,
+          email: user?.email,
+          displayName: user?.displayName || null,
+          role: (await user.customClaims?.role) || role,
+          company: (await user.customClaims?.company) || company,
+          phoneNumber: user.phoneNumber || phoneNumber,
+          photoURL: user.photoURL || null,
+          emailVerified: user.emailVerified || false,
+          disabled: user.disabled || false,
+          providerData: user?.providerData || null,
+          customClaims: user?.customClaims || null,
+          tokensValidAfterTime: user.tokensValidAfterTime || null,
+          lastLoginAt: user.lastLoginAt || null,
+          createdAt: user.createdAt || null,
+        });
+
       if (!user.emailVerified) {
         const actionCodeSettings = {
           url: `${config.redirectUrl}/email-verified?uid=${user.uid}`,

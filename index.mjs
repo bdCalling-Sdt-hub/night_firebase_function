@@ -1,8 +1,10 @@
+// Import function files
 import { dirname, resolve } from "path";
+// Import other modules
+import { onUserCreated, onUserDeleted } from "./authWithFirestore.mjs";
 
 import fs from "fs";
 import { fileURLToPath } from "url";
-// Import other modules
 import landing_page from "./landing_page.js";
 import send_email_verification from "./send_email_verification.js";
 import support from "./support.js";
@@ -30,4 +32,13 @@ console.log(
 );
 
 // Export Firebase Functions
-export { landing_page, send_email_verification, support, users };
+
+// Expose the Firebase functions by assigning them to `exports`
+export {
+  landing_page,
+  onUserCreated,
+  onUserDeleted,
+  send_email_verification,
+  support,
+  users,
+};

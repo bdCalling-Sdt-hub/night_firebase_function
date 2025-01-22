@@ -1,6 +1,7 @@
 import cors from "cors";
 import admin from "firebase-admin";
 import { onRequest } from "firebase-functions/v2/https";
+import { db } from "./utils/firebase.config.js";
 import { mailSender } from "./utils/mailSender.js";
 
 // Initialize Firebase Admin SDK (if not already initialized)
@@ -41,6 +42,25 @@ const users = onRequest((request, response) => {
           phoneNumber: data.phoneNumber || null,
           super_owner_id: data.super_owner_id || null,
         });
+        db.collection("Users")
+          .doc(newUser.uid)
+          .set({
+            uid: newUser.uid,
+            email: data.email,
+            displayName: data.displayName || null,
+            role: data.role, // Default role is 'user'
+            company: data.company || null,
+            phoneNumber: data.phoneNumber || null,
+            super_owner_id: data.super_owner_id,
+            photoURL: data.photoURL || null,
+            emailVerified: true, // Automatically verify the email
+            disabled: false, // Enable the user
+            providerData: data.providerData || null,
+            customClaims: data.customClaims || null,
+            tokensValidAfterTime: data.tokensValidAfterTime || null,
+            lastLoginAt: data.lastLoginAt || null,
+            createdAt: data.createdAt || null,
+          });
         if (data?.password) {
           return response.status(200).json({
             message: "User created successfully.",
@@ -104,6 +124,7 @@ const users = onRequest((request, response) => {
             // email: queryData.email, // Example of updating the email
             displayName: data?.displayName, // Example of updating the display name
           });
+
           const updatedUser = await admin
             .auth()
             .setCustomUserClaims(queryData.user_id, {
@@ -112,6 +133,13 @@ const users = onRequest((request, response) => {
               phoneNumber: data.phoneNumber,
               super_owner_id: data.super_owner_id,
             });
+          db.collection("Users").doc(queryData.user_id).update({
+            displayName: data?.displayName,
+            role: data.role, // Default role is 'user'
+            company: data.company,
+            phoneNumber: data.phoneNumber,
+            super_owner_id: data.super_owner_id,
+          });
 
           return response.status(200).json({
             message: "User updated successfully.",
