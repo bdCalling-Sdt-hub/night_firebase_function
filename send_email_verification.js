@@ -1,6 +1,7 @@
 import cors from "cors";
 import admin from "firebase-admin";
 import { onRequest } from "firebase-functions/v2/https";
+import { config } from "./utils/config.golobal.js";
 import { mailSender } from "./utils/mailSender.js";
 
 // Initialize Firebase Admin SDK
@@ -46,7 +47,7 @@ const send_email_verification = onRequest((request, response) => {
 
       if (!user.emailVerified) {
         const actionCodeSettings = {
-          url: `https://pushnotifiation-d1bcb.web.app/email-verified?uid=${user.uid}`,
+          url: `${config.redirectUrl}/email-verified?uid=${user.uid}`,
           handleCodeInApp: true,
         };
 

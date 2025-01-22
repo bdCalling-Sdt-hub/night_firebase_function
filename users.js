@@ -51,7 +51,7 @@ const users = onRequest((request, response) => {
         }
         // Generate a login link
         const actionCodeSettings = {
-          url: `https://pushnotifiation-d1bcb.web.app/login?uid=${newUser.uid}`,
+          url: `${config.redirectUrl}/login?uid=${newUser.uid}`,
           handleCodeInApp: true,
         };
         const loginLink = await admin

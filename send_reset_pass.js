@@ -19,7 +19,7 @@ const send_reset_pass = onRequest((request, response) => {
       const user = await admin.auth().getUserByEmail(email);
 
       const actionCodeSettings = {
-        url: `https://pushnotifiation-d1bcb.web.app/email-verified?uid=${user.uid}`,
+        url: `${config.redirectUrl}/email-verified?uid=${user.uid}`,
         handleCodeInApp: true,
       };
 

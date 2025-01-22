@@ -6,4 +6,5 @@ export const config = {
   port: process.env.PORT || 3000,
   userEmail: process.env.EMAIL_USER,
   userPassword: process.env.EMAIL_PASS,
+  redirectUrl: process.env.REDIRECT_URL,
 };
