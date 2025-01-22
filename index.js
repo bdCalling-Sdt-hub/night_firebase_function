@@ -1,10 +1,7 @@
-import * as functions from "firebase-functions";
-
 import { dirname, resolve } from "path";
 
-import admin from "firebase-admin";
-import { fileURLToPath } from "url";
 import fs from "fs";
+import { fileURLToPath } from "url";
 // Import other modules
 import landing_page from "./landing_page.js";
 import send_email_verification from "./send_email_verification.js";
