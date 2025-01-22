@@ -1,0 +1,134 @@
+[debug] [2025-01-22T07:42:54.438Z] ----------------------------------------------------------------------
+[debug] [2025-01-22T07:42:54.439Z] Command:       /Users/arifbiswas/.nvm/versions/node/v20.18.1/bin/node /opt/homebrew/bin/firebase deploy --only functions
+[debug] [2025-01-22T07:42:54.439Z] CLI Version:   13.29.1
+[debug] [2025-01-22T07:42:54.439Z] Platform:      darwin
+[debug] [2025-01-22T07:42:54.439Z] Node Version:  v20.18.1
+[debug] [2025-01-22T07:42:54.439Z] Time:          Wed Jan 22 2025 13:42:54 GMT+0600 (Bangladesh Standard Time)
+[debug] [2025-01-22T07:42:54.440Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-22T07:42:54.479Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-22T07:42:54.479Z] > authorizing via signed-in user (arifbiswas1020@gmail.com)
+[debug] [2025-01-22T07:42:54.479Z] [iam] checking project nightclubapp for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2025-01-22T07:42:54.480Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:42:54.480Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:42:54.480Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/nightclubapp:testIamPermissions [none]
+[debug] [2025-01-22T07:42:54.480Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/nightclubapp:testIamPermissions x-goog-quota-user=projects/nightclubapp
+[debug] [2025-01-22T07:42:54.481Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nightclubapp:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-01-22T07:42:55.987Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/nightclubapp:testIamPermissions 200
+[debug] [2025-01-22T07:42:55.987Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nightclubapp:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-01-22T07:42:55.987Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:42:55.987Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:42:55.987Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/nightclubapp/serviceAccounts/nightclubapp@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-01-22T07:42:55.987Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/nightclubapp/serviceAccounts/nightclubapp@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-01-22T07:42:57.623Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/nightclubapp/serviceAccounts/nightclubapp@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2025-01-22T07:42:57.624Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/nightclubapp/serviceAccounts/nightclubapp@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'nightclubapp'...
+[info] 
+[info] i  deploying functions 
+[debug] [2025-01-22T07:42:57.628Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:42:57.628Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:42:57.629Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/nightclubapp [none]
+[debug] [2025-01-22T07:42:57.937Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/nightclubapp 200
+[debug] [2025-01-22T07:42:57.938Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/nightclubapp {"projectNumber":"417062302373","projectId":"nightclubapp","lifecycleState":"ACTIVE","name":"nightclubapp","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-01-16T07:49:25.559059Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2025-01-22T07:42:57.939Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:42:57.939Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:42:57.939Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:42:57.940Z] Checked if tokens are valid: true, expires at: 1737534554404
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2025-01-22T07:42:57.940Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:42:57.940Z] Checked if tokens are valid: true, expires at: 1737534554404
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2025-01-22T07:42:57.940Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:42:57.940Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:42:57.941Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-01-22T07:42:57.941Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/nightclubapp
+[debug] [2025-01-22T07:42:57.942Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/runtimeconfig.googleapis.com [none]
+[debug] [2025-01-22T07:42:57.942Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/nightclubapp
+[debug] [2025-01-22T07:42:57.944Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/cloudbuild.googleapis.com [none]
+[debug] [2025-01-22T07:42:57.944Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/cloudbuild.googleapis.com x-goog-quota-user=projects/nightclubapp
+[debug] [2025-01-22T07:42:57.945Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/artifactregistry.googleapis.com [none]
+[debug] [2025-01-22T07:42:57.945Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/artifactregistry.googleapis.com x-goog-quota-user=projects/nightclubapp
+[debug] [2025-01-22T07:42:59.705Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/cloudfunctions.googleapis.com 200
+[debug] [2025-01-22T07:42:59.705Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/cloudfunctions.googleapis.com [omitted]
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2025-01-22T07:42:59.720Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/cloudbuild.googleapis.com 200
+[debug] [2025-01-22T07:42:59.720Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/cloudbuild.googleapis.com [omitted]
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2025-01-22T07:42:59.726Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/artifactregistry.googleapis.com 200
+[debug] [2025-01-22T07:42:59.726Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/artifactregistry.googleapis.com [omitted]
+[info] ✔  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2025-01-22T07:42:59.738Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/runtimeconfig.googleapis.com 200
+[debug] [2025-01-22T07:42:59.738Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2025-01-22T07:42:59.738Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:42:59.738Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:42:59.738Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nightclubapp/adminSdkConfig [none]
+[debug] [2025-01-22T07:43:00.839Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nightclubapp/adminSdkConfig 200
+[debug] [2025-01-22T07:43:00.839Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nightclubapp/adminSdkConfig {"projectId":"nightclubapp","storageBucket":"nightclubapp.firebasestorage.app"}
+[debug] [2025-01-22T07:43:00.839Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:43:00.839Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:43:00.839Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/nightclubapp/configs [none]
+[debug] [2025-01-22T07:43:01.777Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/nightclubapp/configs 200
+[debug] [2025-01-22T07:43:01.777Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/nightclubapp/configs {}
+[debug] [2025-01-22T07:43:01.778Z] Validating nodejs source
+[debug] [2025-01-22T07:43:02.263Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "22"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.0.1",
+    "nodemailer": "^6.9.16"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2025-01-22T07:43:02.263Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2025-01-22T07:43:02.264Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-01-22T07:43:02.267Z] Found firebase-functions binary at '/Users/arifbiswas/Desktop/projects/night_club_functions/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8144
+
+[info] Updated firebase.json with host: 10.0.80.14, port: 5001
+
+[debug] [2025-01-22T07:43:02.566Z] Got response from /__/functions.yaml {"endpoints":{"landing_page":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"landing_page"},"send_email_verification":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"send_email_verification"},"support":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"support"},"users":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"users"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] i  extensions: ensuring required API firebaseextensions.googleapis.com is enabled... 
+[debug] [2025-01-22T07:43:06.581Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:43:06.581Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:43:06.581Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/firebaseextensions.googleapis.com [none]
+[debug] [2025-01-22T07:43:06.581Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/firebaseextensions.googleapis.com x-goog-quota-user=projects/nightclubapp
+[debug] [2025-01-22T07:43:08.248Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/firebaseextensions.googleapis.com 200
+[debug] [2025-01-22T07:43:08.248Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nightclubapp/services/firebaseextensions.googleapis.com [omitted]
+[info] ✔  extensions: required API firebaseextensions.googleapis.com is enabled 
+[debug] [2025-01-22T07:43:08.248Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-22T07:43:08.248Z] > authorizing via signed-in user (arifbiswas1020@gmail.com)
+[debug] [2025-01-22T07:43:08.249Z] [iam] checking project nightclubapp for permissions ["firebase.projects.get","firebaseextensions.instances.list"]
+[debug] [2025-01-22T07:43:08.249Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:43:08.249Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:43:08.249Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/nightclubapp:testIamPermissions [none]
+[debug] [2025-01-22T07:43:08.249Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/nightclubapp:testIamPermissions x-goog-quota-user=projects/nightclubapp
+[debug] [2025-01-22T07:43:08.249Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nightclubapp:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-01-22T07:43:09.578Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/nightclubapp:testIamPermissions 200
+[debug] [2025-01-22T07:43:09.578Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nightclubapp:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-01-22T07:43:09.579Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:43:09.579Z] Checked if tokens are valid: true, expires at: 1737534554404
+[debug] [2025-01-22T07:43:09.580Z] >>> [apiv2][query] GET https://firebaseextensions.googleapis.com/v1beta/projects/nightclubapp/instances pageSize=100&pageToken=
