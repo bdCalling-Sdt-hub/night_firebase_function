@@ -1,8 +1,9 @@
-import cors from "cors";
 import admin from "firebase-admin";
-import { onRequest } from "firebase-functions/v2/https";
+import { config } from "./utils/config.golobal.js";
+import cors from "cors";
 import { db } from "./utils/firebase.config.js";
 import { mailSender } from "./utils/mailSender.js";
+import { onRequest } from "firebase-functions/v2/https";
 
 // Initialize Firebase Admin SDK (if not already initialized)
 if (!admin.apps.length) {
@@ -40,26 +41,28 @@ const users = onRequest((request, response) => {
           role: data.role, // Default role is 'user'
           company: data.company || null,
           phoneNumber: data.phoneNumber || null,
+          manager_id: data?.manager_id || null,
+          owner_id: data?.owner_id || null,
           super_owner_id: data.super_owner_id || null,
         });
         db.collection("Users")
           .doc(newUser.uid)
           .set({
-            uid: newUser.uid,
-            email: data.email,
-            displayName: data.displayName || null,
-            role: data.role, // Default role is 'user'
-            company: data.company || null,
-            phoneNumber: data.phoneNumber || null,
-            super_owner_id: data.super_owner_id,
-            photoURL: data.photoURL || null,
+            uid: newUser?.uid || null,
+            email: data?.email || null,
+            displayName: data?.displayName || null,
+            role: data?.role || null, // Default role is 'user'
+            company: data?.company || null,
+            phoneNumber: data?.phoneNumber || null,
+            super_owner_id: data?.super_owner_id,
+            photoURL: data?.photoURL || null,
             emailVerified: true, // Automatically verify the email
             disabled: false, // Enable the user
-            providerData: data.providerData || null,
-            customClaims: data.customClaims || null,
-            tokensValidAfterTime: data.tokensValidAfterTime || null,
-            lastLoginAt: data.lastLoginAt || null,
-            createdAt: data.createdAt || null,
+            providerData: data?.providerData || null,
+            customClaims: data?.customClaims || null,
+            tokensValidAfterTime: data?.tokensValidAfterTime || null,
+            lastLoginAt: data?.lastLoginAt || null,
+            createdAt: data?.createdAt || null,
           });
         if (data?.password) {
           return response.status(200).json({
@@ -128,18 +131,24 @@ const users = onRequest((request, response) => {
           const updatedUser = await admin
             .auth()
             .setCustomUserClaims(queryData.user_id, {
-              role: data.role, // Default role is 'user'
-              company: data.company,
-              phoneNumber: data.phoneNumber,
-              super_owner_id: data.super_owner_id,
+              role: data?.role || null, // Default role is 'user'
+              company: data?.company || null,
+              phoneNumber: data?.phoneNumber || null,
+              super_owner_id: data?.super_owner_id || null,
+              manager_id: data?.manager_id || null,
+              owner_id: data?.owner_id || null,
             });
-          db.collection("Users").doc(queryData.user_id).update({
-            displayName: data?.displayName,
-            role: data.role, // Default role is 'user'
-            company: data.company,
-            phoneNumber: data.phoneNumber,
-            super_owner_id: data.super_owner_id,
-          });
+          db.collection("Users")
+            .doc(queryData.user_id)
+            .update({
+              displayName: data?.displayName,
+              role: data?.role || null, // Default role is 'user'
+              company: data?.company || null,
+              phoneNumber: data?.phoneNumber || null,
+              super_owner_id: data?.super_owner_id,
+              manager_id: data?.manager_id || null,
+              owner_id: data?.owner_id || null,
+            });
 
           return response.status(200).json({
             message: "User updated successfully.",
@@ -183,6 +192,10 @@ const users = onRequest((request, response) => {
               company: user.customClaims?.company,
               phoneNumber: user.phoneNumber,
               photoURL: user.photoURL,
+              // emailVerified: user.emailVerified,
+              manager_id: user.customClaims?.manager_id,
+              owner_id: user.customClaims?.owner_id,
+              super_owner_id: user.customClaims?.super_owner_id,
             })),
           });
         } catch (error) {

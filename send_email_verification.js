@@ -1,8 +1,8 @@
-import cors from "cors";
 import admin from "firebase-admin";
-import { onRequest } from "firebase-functions/v2/https";
 import { config } from "./utils/config.golobal.js";
+import cors from "cors";
 import { mailSender } from "./utils/mailSender.js";
+import { onRequest } from "firebase-functions/v2/https";
 
 // Initialize Firebase Admin SDK
 
@@ -60,7 +60,6 @@ const send_email_verification = onRequest((request, response) => {
           photoURL: user.photoURL || null,
           emailVerified: user.emailVerified || false,
           disabled: user.disabled || false,
-          providerData: user?.providerData || null,
           customClaims: user?.customClaims || null,
           tokensValidAfterTime: user.tokensValidAfterTime || null,
           lastLoginAt: user.lastLoginAt || null,

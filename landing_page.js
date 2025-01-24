@@ -1,5 +1,5 @@
-import cors from "cors";
 import admin from "firebase-admin";
+import cors from "cors";
 import { onRequest } from "firebase-functions/v2/https";
 
 // Initialize Firebase Admin SDK
@@ -112,16 +112,25 @@ const landing_page = onRequest((request, response) => {
         // find user by user_id
         const userRecord = (await admin.auth().getUser(user_id)).toJSON();
 
-        console.log(userRecord);
+        // console.log(userRecord);
 
         if (userRecord?.uid) {
           data.super_owner_id =
             userRecord?.customClaims?.role == "super-owner"
               ? userRecord.uid
               : userRecord.customClaims?.super_owner_id;
+          data.owner_id =
+            userRecord?.customClaims?.role == "owner"
+              ? userRecord.uid
+              : userRecord.customClaims?.owner_id || null;
+          data.manager_id =
+            userRecord?.customClaims?.role == "manager"
+              ? userRecord.uid
+              : userRecord.customClaims?.manager_id || null;
+
           data.added_by = userRecord?.displayName;
 
-          console.log(data);
+          // console.log(data);
 
           //   add new Guest
           const refDoc = admin.firestore().collection("Guests").doc();
