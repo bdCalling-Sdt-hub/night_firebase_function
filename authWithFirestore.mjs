@@ -25,7 +25,7 @@ export const onUserCreated = functions.auth.user().onCreate(async (user) => {
       customClaims: user?.customClaims || null,
       tokensValidAfterTime: user.tokensValidAfterTime || null,
       lastLoginAt: user.lastLoginAt || null,
-      createdAt: user.createdAt || null,
+      createdAt: new Date() || null,
     });
 });
 
