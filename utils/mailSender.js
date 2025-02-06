@@ -1,6 +1,6 @@
+import nodemailer from "nodemailer";
 import { config } from "./config.golobal.js";
 import { defaultHtmlTemplate } from "./defaultHtmlTemplate.js";
-import nodemailer from "nodemailer";
 
 export const mailSender = async (
   email,
@@ -43,7 +43,7 @@ export const mailSender = async (
   const mailOptions = {
     from: config.userEmail,
     to: email,
-    subject: title || "Night Club Verification Link",
+    subject: title || "Nite App Email Verification",
     html: htmlTemplate,
   };
 
