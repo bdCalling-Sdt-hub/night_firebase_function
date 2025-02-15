@@ -89,7 +89,7 @@ const users = onRequest((request, response) => {
           const res = await mailSender(
             data?.email,
             loginLink,
-            "Welcome to Nite",
+            "Nite App",
             "login"
           );
           // console.log("Email", res);

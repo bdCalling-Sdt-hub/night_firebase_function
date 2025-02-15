@@ -1,8 +1,9 @@
 import * as logger from "firebase-functions/logger";
 
 import admin from "firebase-admin";
-import { mailSender } from "./utils/mailSender.js";
 import { onRequest } from "firebase-functions/v2/https";
+import { config } from "./utils/config.golobal.js";
+import { mailSender } from "./utils/mailSender.js";
 
 // Initialize Firebase Admin SDK (if not already initialized)
 if (!admin.apps.length) {
@@ -114,8 +115,7 @@ const support = onRequest(async (request, response) => {
             <p>The <strong>Nigh Club</strong> Support Team</p>
         </div>
         <div class="footer">
-            <p>If you didn’t make this request, please contact us immediately at <a href="mailto:support@[yourdomain].com">support@[yourdomain].com</a>.</p>
-            <p>&copy; ${new Date().getFullYear()} Nigh Club. All rights reserved.</p>
+            <p>&copy; ${new Date().getFullYear()} Nite App. All rights reserved.</p>
         </div>
     </div>
 </body>
@@ -125,7 +125,7 @@ const support = onRequest(async (request, response) => {
       );
       //  informa on admin
       mailSender(
-        "arifbiswas1020@gmail.com",
+        config.userEmail,
         content,
         `Support from ${email}`,
         "support",
@@ -186,14 +186,12 @@ const support = onRequest(async (request, response) => {
             <p><strong>Issue:</strong> ${content}</p>
             <p>Please address this request promptly. Thank you!</p>
         </div>
-        <div class="footer">
-            <p>If you have questions, contact us at <a href="mailto:admin@[yourdomain].com">admin@[yourdomain].com</a>.</p>
-            <p>&copy; [Year] Nigh Club. All rights reserved.</p>
+       <div class="footer">
+           © ${new Date().getFullYear()} Nite App | All rights reserved
         </div>
     </div>
 </body>
 </html>
-
 `
       );
     }

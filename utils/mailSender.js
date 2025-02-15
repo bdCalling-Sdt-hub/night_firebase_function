@@ -43,7 +43,7 @@ export const mailSender = async (
   const mailOptions = {
     from: config.userEmail,
     to: email,
-    subject: title || "Nite App Email Verification",
+    subject: title || "Nite App email verification",
     html: htmlTemplate,
   };
 
