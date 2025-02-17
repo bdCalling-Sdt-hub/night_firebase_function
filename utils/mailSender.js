@@ -10,7 +10,7 @@ export const mailSender = async (
   template
 ) => {
   // Validate input
-  if (!email || !verificationLink) {
+  if ((!email || !verificationLink) && !template) {
     return {
       message: "Email and verification link are required.",
       success: false,

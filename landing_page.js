@@ -1,6 +1,7 @@
-import admin from "firebase-admin";
 import cors from "cors";
+import admin from "firebase-admin";
 import { onRequest } from "firebase-functions/v2/https";
+import { mailSender } from "./utils/mailSender.js";
 
 // Initialize Firebase Admin SDK
 if (!admin.apps.length) {
@@ -40,7 +41,7 @@ const landing_page = onRequest((request, response) => {
         //   console.log(super_owner_id, event);
 
         // Fetch user details from Firebase Authentication;
-        const userRecord = await admin.auth().getUser(user_id);
+        const userRecord = (await admin.auth().getUser(user_id)).toJSON();
 
         if (userRecord?.uid) {
           const snapshot = await admin
@@ -110,7 +111,7 @@ const landing_page = onRequest((request, response) => {
           });
         }
         // find user by user_id
-        const userRecord = (await admin.auth().getUser(user_id)).toJSON();
+        const userRecord = await admin.auth().getUser(user_id);
 
         // console.log(userRecord);
 
@@ -133,6 +134,8 @@ const landing_page = onRequest((request, response) => {
           // console.log(data);
 
           //   add new Guest
+
+          // console.log(data);
           const refDoc = admin.firestore().collection("Guests").doc();
           await refDoc.set({
             id: refDoc.id,
@@ -140,6 +143,129 @@ const landing_page = onRequest((request, response) => {
             created_at: admin.firestore.FieldValue.serverTimestamp(),
             updated_at: admin.firestore.FieldValue.serverTimestamp(),
           });
+
+          const Event = await admin
+            .firestore()
+            .collection("Events")
+            .doc(data.event)
+            .get();
+          const eventData = Event.data();
+
+          await mailSender(
+            data.email,
+            null,
+            `${eventData?.name} book successfully`,
+            null,
+            `
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Booking Confirmation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #071115;
+      margin: 0;
+      padding: 0;
+      color: #ffffff;
+    }
+    .email-container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #071115;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      border: 2px solid #55AACA;
+    }
+    .header {
+      background-color: #55AACA;
+      padding: 20px;
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 28px;
+      margin: 0;
+      color: #ffffff;
+    }
+    .content {
+      padding: 30px;
+    }
+    .content p {
+      font-size: 16px;
+      color: #cccccc;
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+    .content ul li {
+      font-size: 16px;
+      color: #cccccc;
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+    .content a {
+      display: inline-block;
+      margin: 20px 0;
+      padding: 14px 24px;
+      background-color: #55AACA;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .footer {
+      background-color: #071115;
+      padding: 20px;
+      text-align: center;
+      border-top: 1px solid #55AACA;
+    }
+    .footer p {
+      font-size: 14px;
+      color: #cccccc;
+      margin: 5px 0;
+    }
+    .footer a {
+      color: #55AACA;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      <h1>${eventData?.name} Booked Successfully!</h1>
+    </div>
+    <div class="content">
+      <p>Dear ${data?.name || "User"},</p>
+      <p>
+        We are excited to inform you that your booking for the event <strong>${
+          eventData?.name
+        }</strong> has been successfully confirmed. Here are the event details:
+      </p>
+      <ul >
+        <li><strong>Event Name:</strong> ${eventData?.name}</li>
+        <li><strong>Date:</strong> ${
+          eventData?.date ? new Date(eventData?.date).toString() : "N/A"
+        }</li>
+     
+      </ul>
+      <p>
+        Please mark your calendar and get ready for an amazing experience!
+      </p>
+  
+    </div>
+    <div class="footer">
+      <p>© ${new Date().getFullYear()} Nite App | All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html>
+`
+          );
+
           return response.status(200).json({
             message: "Guest added successfully.",
             success: true,

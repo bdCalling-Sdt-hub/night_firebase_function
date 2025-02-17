@@ -80,6 +80,7 @@ export const defaultHtmlTemplate = (verificationLink, type) => {
           Please verify your email and login to your account by clicking the button below.
         </p>
         <a href="${verificationLink}" style="font-size: 18px; color: #55AACA; text-decoration: none; background-color: #ffffff; padding: 10px 20px; border-radius: 4px; display: inline-block; margin-top: 10px; font-weight: bold;">Verify & Login</a>
+       
         <p style="font-size: 14px; color: #888888; margin-top: 20px;">
           If you did not request this, please ignore this email.
         </p>
